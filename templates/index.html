@@ -3,18 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/styles.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>Доступные для скачивания файлы: </h1>
-    {% if not files %}
-        <h3>Нет доступных файлов</h3>
-    {% else %}
-        <ul>
-            {% for file in files %}
-                <li><a href="/download/{{ file }}">{{ file }}</a></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    <div class="main-card">
+        <h1>DOWNLOAD</h1>
+        {% if not files %}
+            <h3>Нет доступных файлов</h3>
+        {% else %}
+            <div class="files-list">
+                <ul>
+                    {% for file in files %}
+                        <li>
+                            <div class="file-download">
+                                <a href="/download/{{ file }}">
+                                    {{ file }} <img src="/static/d.svg" alt="download">
+                                </a>
+                            </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
 </body>
 </html>
