@@ -3,11 +3,15 @@ import os
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
+
 
 import uvicorn
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
+
 
 DOWNLOAD_DIRECTORY = "downloads"
 
@@ -17,7 +21,9 @@ def create_download_directory():
 
 def get_all_files_from_download_directory():
     try:
-        return os.listdir(DOWNLOAD_DIRECTORY)
+        all_items = os.listdir(DOWNLOAD_DIRECTORY)
+        files = [item for item in all_items if os.path.isfile(os.path.join(DOWNLOAD_DIRECTORY, item))]
+        return files
     except FileNotFoundError:
         return []
 
@@ -38,4 +44,4 @@ async def root(filename: str):
 
 if __name__ == "__main__":
     create_download_directory()
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
