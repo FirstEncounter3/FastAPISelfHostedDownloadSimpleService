@@ -9,7 +9,10 @@
 </head>
 <body>
     <div class="main-card">
-        <h1>DOWNLOAD</h1>
+        <div class="title">
+            <h1>DOWNLOAD</h1>
+            <img src="{{ qr_code }}" alt="QR Code" title="Для открытия на мобильном устройстве сканируйте QR-код" width="100">
+        </div>
         {% if not files %}
             <h3>Нет доступных файлов</h3>
         {% else %}
