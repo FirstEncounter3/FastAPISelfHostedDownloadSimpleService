@@ -36,7 +36,7 @@
 ## Зависимости проекта
 * [Fastapi](https://fastapi.tiangolo.com/)
 * [Jinja2](https://jinja.palletsprojects.com/en/stable/)
-* [Uvicorn](https://jinja.palletsprojects.com/en/stable/)
+* [Uvicorn](https://www.uvicorn.org/)
 * [Qrcode](https://github.com/lincolnloop/python-qrcode)
 * [Pillow](https://github.com/python-pillow/Pillow)
 
