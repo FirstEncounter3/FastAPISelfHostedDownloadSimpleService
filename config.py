@@ -1,3 +1,4 @@
 DOWNLOAD_DIRECTORY = "downloads"
 UPLOAD_DIRECTORY = "uploads"
 PORT = 8000
+DEBUG = False
