@@ -10,7 +10,7 @@
 <body>
     <div class="main-card">
         <div class="title">
-            <h1>DOWNLOAD</h1>
+            <h2>DOWNLOAD</h2>
             <img src="{{ qr_code }}" alt="QR Code" title="Для открытия на мобильном устройстве сканируйте QR-код" width="100">
         </div>
         {% if not files %}
@@ -30,6 +30,13 @@
                 </ul>
             </div>
         {% endif %}
+        <div class="title">
+            <h2>UPLOAD</h2>
+        </div>
+        <form action="/upload/" method="post" accept="*/*" enctype="multipart/form-data" class="file-upload">
+            <input type="file" name="file">
+            <input type="submit" class="input-submit" value="Upload">
+        </form>
     </div>
 </body>
 </html>
