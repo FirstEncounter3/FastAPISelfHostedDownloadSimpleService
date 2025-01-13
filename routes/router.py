@@ -9,7 +9,7 @@ from fastapi import (
 from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.templating import Jinja2Templates
 
-from config import DOWNLOAD_DIRECTORY, UPLOAD_DIRECTORY, PORT
+from config import DOWNLOAD_DIRECTORY, UPLOAD_DIRECTORY, PORT, DEBUG
 from utilities.get_ip import get_ip_address
 from utilities.qr_code_creator import generate_qr_code
 from utilities.file_and_directory_handler import get_all_files_from_download_directory
@@ -23,7 +23,8 @@ templates = Jinja2Templates(directory="templates")
 async def hello(request: Request) -> HTMLResponse:
     list_of_files = get_all_files_from_download_directory()
     ip_address = get_ip_address()
-    qr_code_img = generate_qr_code(f"http://{ip_address}:{PORT}")
+    qr_code_img = generate_qr_code(f"http://{ip_address}:{PORT}", debug=DEBUG)
+
     return templates.TemplateResponse(
         "index.html",
         {"request": request, "files": list_of_files, "qr_code": qr_code_img},
@@ -45,4 +46,3 @@ async def upload_file(file: UploadFile = File(...)):
     with open(file_path, "wb") as f:
         f.write(file.file.read())
     return {"filename": file.filename}
-        
