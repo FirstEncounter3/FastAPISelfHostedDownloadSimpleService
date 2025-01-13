@@ -6,10 +6,19 @@ from fastapi import (
     File,
     UploadFile,
 )
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import (
+    FileResponse,
+    HTMLResponse,
+    RedirectResponse,
+)
 from fastapi.templating import Jinja2Templates
 
-from config import DOWNLOAD_DIRECTORY, UPLOAD_DIRECTORY, PORT, DEBUG
+from config import (
+    DOWNLOAD_DIRECTORY,
+    UPLOAD_DIRECTORY,
+    PORT,
+    DEBUG,
+)
 from utilities.get_ip import get_ip_address
 from utilities.qr_code_creator import generate_qr_code
 from utilities.file_and_directory_handler import get_all_files_from_download_directory
@@ -43,6 +52,9 @@ async def download_file(filename: str) -> FileResponse:
 @router.post("/upload/")
 async def upload_file(file: UploadFile = File(...)):
     file_path = os.path.join(UPLOAD_DIRECTORY, file.filename)
-    with open(file_path, "wb") as f:
-        f.write(file.file.read())
-    return {"filename": file.filename}
+    try:
+        with open(file_path, "wb") as f:
+            f.write(file.file.read())
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    return RedirectResponse(url="/", status_code=303)
