@@ -3,14 +3,19 @@ import base64
 import io
 
 
-def generate_qr_code(url: str) -> str:
+def generate_qr_code(url: str, debug: bool = False) -> str:
     qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_L,
         box_size=5,
         border=2,
     )
-    qr.add_data(url)
+
+    if debug:
+        qr.add_data(f"http://localhost:8000")
+    else:
+        qr.add_data(url)
+
     qr.make(fit=True)
 
     img = qr.make_image(fill_color="black", back_color="#f5f5f5")
