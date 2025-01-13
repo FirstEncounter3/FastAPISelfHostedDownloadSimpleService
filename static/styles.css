@@ -1,9 +1,15 @@
+@font-face {
+    font-family: "Roboto-regular";
+    src: url("Roboto-Regular.ttf");
+}
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 90vh;
     background: #1c1b1b;
+    font-family: "Roboto-regular", sans-serif;
 }
 
 .main-card {
@@ -30,6 +36,7 @@ h1 {
     color: dodgerblue;
     margin-bottom: 20px;
     text-align: left;
+    font-weight: 900;
 }
 
 .files-list {
@@ -69,8 +76,8 @@ h1 {
 }
 
 .file-download a:hover {
-    background-color: #333;
-    color: #fff;
+    box-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
+    border: dodgerblue solid 1px;
 }
 
 .file-download img {
