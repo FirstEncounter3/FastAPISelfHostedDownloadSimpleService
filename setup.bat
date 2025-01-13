@@ -16,7 +16,7 @@ if errorlevel 1 (
 )
 
 echo Run server
-venv\Scripts\python main.py
+venv\Scripts\python run.py
 
 if errorlevel 1 (
     echo Server failed to start.
