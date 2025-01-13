@@ -176,7 +176,8 @@ pyrightconfig.json
 # mongoDB staff
 store
 
-# downloads
+# downloads and uploads
 downloads
+uploads
 
 # End of https://www.toptal.com/developers/gitignore/api/python
