@@ -1,0 +1,2 @@
+DOWNLOAD_DIRECTORY = "downloads"
+PORT = 8000
